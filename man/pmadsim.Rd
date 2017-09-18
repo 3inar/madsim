@@ -36,7 +36,7 @@
   \item{sdn}{ a positive scalar used as standard deviation for the
                additive gaussian noise: \code{sdn = 0.4}}
   \item{rseed}{ an integer used as seed for generating random number
-                  by the computer in use: \code{rseed = 50}}
+                  by the computer in use: \code{rseed = 50}. Unused.}
 }
 
 \details{User provides a subset of parameters. A detailed description of
@@ -50,6 +50,7 @@
   \item{xid}{ a vector of indexes with values are from the set (0, -1, 1).
                These values are used for non differentially expressed, down-
                and up-regulated genes}
+  \item{followup}{ a vector of followup time for the observations in xdata }
   \item{xsd}{ a scalar containing the standard deviation of first
                column of the dataset generated}
 }
@@ -57,7 +58,7 @@
 \references{Dembele D. (2013), A Flexible Microarray Data Simulation Model.
      Microarrays, 2013, 2(2):115-130}
 
-\author{Doulaye Dembele}
+\author{Doulaye Dembele, Einar Holsbø}
 
 \examples{
     # load a sample of real microarray data
