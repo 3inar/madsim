@@ -1,4 +1,4 @@
-Package: madsim
+Package: pmadsim
 Type: Package
 Title: A Flexible Microarray Data Simulation Model
 Version: 1.2.1
