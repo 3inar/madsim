@@ -1,7 +1,7 @@
 Package: pmadsim
 Type: Package
 Title: A Flexible Microarray Simulation Model for Prospective Data
-Version: 1.2.1
+Version: 0.0.1
 Date: 2016-12-07
 Author: Doulaye Dembele, Einar Holsbo
 Maintainer: Einar Holsbø <einar@cs.uit.no>
