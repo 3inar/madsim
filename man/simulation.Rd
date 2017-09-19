@@ -35,7 +35,7 @@ A list containing the following values
 \code{\link{pmadsim}}
 }
 \examples{
-d <- simulate()
+d <- simulation()
 differential <- d$differential
 expression <- d$expression
 followup <- d$followup
