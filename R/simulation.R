@@ -1,4 +1,4 @@
-simulation <- function(n_case=33, n_control=88) {
+simulation <- function(n_case=33, n_control=55) {
   data(pooled)
   tot <- n_case + n_control
   fparams = data.frame(m1=n_control+tot,m2=n_case, shape2=4, lb=4,ub=14,pde=0.02,sym=0.5)
