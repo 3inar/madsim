@@ -1,9 +1,9 @@
 simulation <- function(n_case=33, n_control=55, lambda2=4) {
   data(pooled)
   tot <- n_case + n_control
-  fparams = data.frame(m1=n_control+tot,m2=n_case, shape2=4, lb=4,ub=14,pde=0.02,sym=0.5)
+  fparams = data.frame(m1=n_control+tot,m2=n_case, shape2=4, lb=4,ub=14,pde=0.01,sym=0.5)
   dparams = data.frame(lambda1=0.13, lambda2=lambda2, muminde=0.1, sdde=0.1)
-  dat <- pmadsim(mdata=pooled, fparams=fparams, dparams=dparams, time_decay = T, ratio = 0, sdn=0.2)
+  dat <- pmadsim(mdata=pooled, fparams=fparams, dparams=dparams, n=10000, time_decay = T, ratio = 0, sdn=0.2)
 
   expression <- t(dat$xdata[, (tot+1):(2*tot)]) - t(dat$xdata[, 1:tot])
   differential <- dat$xid[,1]
