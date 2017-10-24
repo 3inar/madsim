@@ -2,7 +2,7 @@ pmadsim <-
 function(mdata = NULL, n = 10000, ratio = 0,
          fparams = data.frame(m1=7, m2=7, shape2=4, lb=4, ub=14, pde=0.02, sym=0.5),
          dparams = data.frame(lambda1=0.13, lambda2=2, muminde=1.0, sdde=0.5),
-         sdn=0.4, rseed=50, time_decay=F, min_decay_weight=0.05) {
+         sdn=0.4, rseed=50, time_decay=F, stratified=F, min_decay_weight=0.05) {
 
     # set.seed(rseed);
     m1 <- fparams$m1;
@@ -31,6 +31,14 @@ function(mdata = NULL, n = 10000, ratio = 0,
       decay_weight <- rep(1, m2)
     }
 
+    if (stratified) {
+      stratum <- rbinom(m1+m2, prob = .5, size = 1)
+      stratum_effect <- .5^stratum[-(1:m1)]
+    } else {
+      stratum <- rep(NA, m1+m2)
+      stratum_effect <- rep(1, m2)
+    }
+
 
     xdat <- matrix(c(rep(0,n*m)), ncol = m);
     xid <- matrix(c(rep(0,n)), ncol = 1);
@@ -44,10 +52,10 @@ function(mdata = NULL, n = 10000, ratio = 0,
                xi1 <- xi_val[1:(m1+1)];
                mude <- dparams$muminde + rexp(1, dparams$lambda2);
                if (sample(1:1000,1) > (1000*fparams$sym)) { # up regulated gene
-                  xi2 <- xi_val[(m1+2):m] + rnorm(m2, mean = mude, sd = dparams$sdde)*decay_weight;
+                  xi2 <- xi_val[(m1+2):m] + rnorm(m2, mean = mude, sd = dparams$sdde)*decay_weight*stratum_effect;
                   xid[i] <- 1;
                } else { # down regulated gene
-                  xi2 <- xi_val[(m1+2):m] - rnorm(m2, mean = mude, sd = dparams$sdde)*decay_weight;
+                  xi2 <- xi_val[(m1+2):m] - rnorm(m2, mean = mude, sd = dparams$sdde)*decay_weight*stratum_effect;
                   xid[i] <- -1;
                }
                xdat[i,] <- c(xi1,xi2);
@@ -69,5 +77,5 @@ function(mdata = NULL, n = 10000, ratio = 0,
     } else {    # absolute expression values
            xdata <- xdat[,2:m];
     }
-    list(xdata = xdata, xid = xid, xsd = xsd, followup=followup)
+    list(xdata = xdata, xid = xid, xsd = xsd, followup=followup, stratum=stratum)
 }

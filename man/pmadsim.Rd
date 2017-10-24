@@ -37,6 +37,8 @@
                additive gaussian noise: \code{sdn = 0.4}}
   \item{rseed}{ an integer used as seed for generating random number
                   by the computer in use: \code{rseed = 50}. Unused.}
+  \item{followup} {logical indicating whether there should be a followup-effect}
+  \item{stratified} {logical indicating whether there should be a stratum effect}
 }
 
 \details{User provides a subset of parameters. A detailed description of
@@ -51,6 +53,7 @@
                These values are used for non differentially expressed, down-
                and up-regulated genes}
   \item{followup}{ a vector of followup time for the observations in xdata }
+  \item{stratum}{ a vector of stratum indicators for the observations in xdata }
   \item{xsd}{ a scalar containing the standard deviation of first
                column of the dataset generated}
 }
